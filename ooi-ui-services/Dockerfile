@@ -3,14 +3,14 @@
 # Author: RPS ASA
 # Usage: <https://github.com/asascience-open/ooi-ui/wiki/Automated-Deployment-(Docker)>
 
-FROM oceanzus:ooi-base-image
+FROM oceanzus/ooi-base-image
 MAINTAINER James D. Case <case@oceanz.org>
 
 # OOI UI Installation
 RUN git clone https://github.com/asascience-open/ooi-ui-services.git /root/ooi-ui-services
 WORKDIR /root/ooi-ui-services
 RUN /bin/bash -c "source /root/.venvburrito/startup.sh \
-    && workon ooiuiservices \
+    && workon ooiui \
     && pip install -r ./ooiservices/requirements/common.txt"
 
 ADD start_ooi-ui-services.sh /root/ooi-ui-services/start_ooi-ui-services.sh

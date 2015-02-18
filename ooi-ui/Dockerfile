@@ -3,7 +3,7 @@
 # Author: RPS ASA
 # Usage: <https://github.com/asascience-open/ooi-ui/wiki/Automated-Deployment-(Docker)>
 
-FROM oceanzus:ooi-base-image
+FROM oceanzus/ooi-base-image
 MAINTAINER James D. Case <case@oceanz.org>
 
 # OOI UI Installation
