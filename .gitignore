@@ -52,3 +52,9 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# PyCharm Project
+.idea/
+
+# Project-Specific
+*_local.yml

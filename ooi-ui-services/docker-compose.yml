@@ -1,0 +1,76 @@
+#docker run -d -p 9000:9000 --privileged -v /var/run/docker.sock:/var/run/docker.sock dockerui/dockerui
+#dockerui:
+#  image: dockerui/dockerui
+#  ports:
+#   - "9000:9000"
+#  volumes:
+#   - /var/run/docker.sock:/var/run/docker.sock
+#  privileged: true
+
+#docker run -e USERNAME=ooiui -e PASS=ooiui -d --name ooiuidb -v $HOME/postgres_data:/var/lib/postgresql oceanzus/docker_postgis
+ooiuidb:
+  restart: always
+  image: oceanzus/docker_postgis
+  volumes:
+   - $HOME/postgres_data:/var/lib/postgresql
+  environment:
+    USERNAME: ooiui
+    PASS: ooiui
+  ports:
+   - "5432:5432"
+  expose:
+   - "5432"
+
+#docker run -e HOST_IP=0.0.0.0 -e DB_PORT=5432 -e DB_USER=ooiui -e DB_PASS=ooiui -e DB_HOST=ooiuidb -e DB_NAME=ooiuidev -e DB_RESET=true -d --name ooiuiservices --link ooiuidb:ooiuidb oceanzus/ooi-ui-services-deploy
+ooiuiservices:
+  restart: always
+  image: oceanzus/ooi-ui-services-deploy
+  ports:
+   - "4000:4000"
+  expose:
+   - "4000"
+  environment:
+    HOST_IP: 0.0.0.0
+    DB_PORT: 5432
+    DB_USER: ooiui
+    DB_PASS: ooiui
+    DB_HOST: ooiuidb
+    DB_NAME: ooiuidev
+    DB_RESET: true
+    DB_SCHEMA: ooiui
+    DEFAULT_ADMIN_USERNAME: admin
+    DEFAULT_ADMIN_PASSWORD: password
+  links:
+   - ooiuidb
+
+#docker run -d --name ooiui1 --link ooiuiservices:ooiuiservices oceanzus/ooi-ui-deploy
+ooiui1:
+  restart: always
+  image: oceanzus/ooi-ui-deploy
+  expose:
+   - "5000"
+  links:
+   - ooiuiservices:ooiuiservices
+
+#docker run -d --name ooiui2 --link ooiuiservices:ooiuiservices oceanzus/ooi-ui-deploy
+ooiui2:
+  restart: always
+  image: oceanzus/ooi-ui-deploy
+  expose:
+   - "5000"
+  links:
+   - ooiuiservices
+
+#docker run -d --link ooiui1:ooiui1 --link ooiui2:ooiui2 --name ooiui-haproxy -e PORT=5000 -p 10.181.61.91:80:80 oceanzus/haproxy
+ooiuihaproxy:
+  restart: always
+  image: oceanzus/haproxy
+  environment:
+    PORT: 5000
+    MAXCONN: 500
+  ports:
+   - "10.171.76.246:80:80"
+  links:
+   - ooiui1
+   - ooiui2
+

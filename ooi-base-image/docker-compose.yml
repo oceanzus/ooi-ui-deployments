@@ -1,0 +1,14 @@
+base:
+  restart: always
+  build: .
+  volumes:
+   - .:/code
+  expose:
+   - "22"
+   - "4000"
+   - "4070"
+   - "5000"
+   - "9001"
+  ports:
+   - "10.171.76.246:22:22"
+
