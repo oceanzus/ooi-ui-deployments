@@ -16,4 +16,6 @@ RUN /bin/bash -c "source /root/.venvburrito/startup.sh \
 ADD start_ooi-ui-services.sh /root/ooi-ui-services/start_ooi-ui-services.sh
 RUN chmod +x /root/ooi-ui-services/start_ooi-ui-services.sh
 
+EXPOSE 4000
+
 CMD [ "/bin/bash", "-c", "/root/ooi-ui-services/start_ooi-ui-services.sh" ]
