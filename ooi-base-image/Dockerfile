@@ -85,7 +85,5 @@ RUN rm -rf virtualenv-burrito.sh
 # OOI UI Environment
 ENV WORKON_HOME /root/.virtualenvs
 
-# Exposes all of the OOI known ports
-EXPOSE 22, 4000, 5000
 
 
