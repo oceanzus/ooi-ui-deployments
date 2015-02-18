@@ -24,7 +24,7 @@ chmod 600 ~/.pgpass
 
 # Get our virtual environment set up
 source ~/.bash_profile
-workon ooiuiservices
+workon ooiui
 export PYTHONPATH=$PYTHONPATH:.
 
 # Make the config files conform to the launch parameters
