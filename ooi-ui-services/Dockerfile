@@ -7,10 +7,12 @@ FROM oceanzus/ooi-base-image
 MAINTAINER James D. Case <case@oceanz.org>
 
 # OOI UI Installation
-ADD git-deploy /root/git-deploy
+ADD git-deploy .
 RUN export $(cat git-deploy | grep -v ^# | xargs)
 RUN git clone $DEPLOYMENT_REPO /root/ooi-ui-services
 WORKDIR /root/ooi-ui-services
+ADD git-deploy .
+RUN export $(cat git-deploy | grep -v ^# | xargs)
 RUN git checkout $DEPLOYMENT_BRANCH
 ENV WORKON_HOME /root/.virtualenvs
 RUN /bin/bash -c "source /root/.venvburrito/startup.sh \
