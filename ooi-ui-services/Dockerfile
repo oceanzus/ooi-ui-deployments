@@ -8,11 +8,12 @@ MAINTAINER James D. Case <case@oceanz.org>
 
 # OOI UI Installation
 ADD git-deploy ./git-deploy
-RUN export $(cat git-deploy | grep -v ^# | xargs)
-RUN wget $DEPLOYMENT_REPO/archive/$DEPLOYMENT_BRANCH.zip
-RUN unzip $DEPLOYMENT_BRANCH.zip
-WORKDIR /root/ooi-ui-services-$DEPLOYMENT_BRANCH
+RUN /bin/bash -c "export $(cat git-deploy | grep -v ^# | xargs)"
+RUN /bin/bash -c "wget $DEPLOYMENT_REPO/archive/$DEPLOYMENT_BRANCH.zip"
+RUN /bin/bash -c "unzip $DEPLOYMENT_BRANCH.zip"
+RUN /bin/bash -c "mv ooi-ui-services-$DEPLOYMENT_BRANCH ooi-ui-services"
 
+WORKDIR /root/ooi-ui-services
 ENV WORKON_HOME /root/.virtualenvs
 RUN /bin/bash -c "source /root/.venvburrito/startup.sh \
     && workon ooiui \
