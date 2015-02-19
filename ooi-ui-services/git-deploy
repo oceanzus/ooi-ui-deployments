@@ -1,4 +1,4 @@
 # Sets the Git repo to deploy
-DEPLOYMENT_REPO=https://github.com/asascience-open/ooi-ui-services.git
+DEPLOYMENT_REPO=https://github.com/asascience-open/ooi-ui-services
 # Sets the branch to deploy
 DEPLOYMENT_BRANCH=master
