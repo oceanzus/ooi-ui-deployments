@@ -9,7 +9,7 @@ MAINTAINER James D. Case <case@oceanz.org>
 # OOI UI Installation
 WORKDIR /root
 ADD git-deploy.sh /root/git-deploy.sh
-RUN /bin/bash -c "/root/git-deploy.sh"
+RUN /bin/bash -c "chmod +x /root/git-deploy.sh && /root/git-deploy.sh"
 
 WORKDIR /root/ooi-ui-services
 ENV WORKON_HOME /root/.virtualenvs
