@@ -7,8 +7,12 @@ FROM oceanzus/ooi-base-image
 MAINTAINER James D. Case <case@oceanz.org>
 
 # OOI UI Installation
-RUN git clone https://github.com/asascience-open/ooi-ui.git /root/ooi-ui
+WORKDIR /root
+ADD git-deploy.sh /root/git-deploy.sh
+RUN /bin/bash -c "chmod +x /root/git-deploy.sh && /root/git-deploy.sh"
+
 WORKDIR /root/ooi-ui
+ENV WORKON_HOME /root/.virtualenvs
 RUN /bin/bash -c "source /root/.venvburrito/startup.sh \
     && workon ooiui \
     && pip install -r requirements.txt"
