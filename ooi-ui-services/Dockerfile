@@ -13,7 +13,7 @@ RUN git clone $DEPLOYMENT_REPO /root/ooi-ui-services
 WORKDIR /root/ooi-ui-services
 ADD git-deploy ./git-deploy
 RUN export $(cat git-deploy | grep -v ^# | xargs)
-RUN git checkout $DEPLOYMENT_BRANCH
+RUN git checkout -q $DEPLOYMENT_BRANCH
 ENV WORKON_HOME /root/.virtualenvs
 RUN /bin/bash -c "source /root/.venvburrito/startup.sh \
     && workon ooiui \
