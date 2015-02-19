@@ -7,11 +7,9 @@ FROM oceanzus/ooi-base-image
 MAINTAINER James D. Case <case@oceanz.org>
 
 # OOI UI Installation
-ADD git-deploy /root/git-deploy
-RUN /bin/bash -c "export $(cat /root/git-deploy | grep -v ^# | xargs)"
-RUN /bin/bash -c "wget $DEPLOYMENT_REPO/archive/$DEPLOYMENT_BRANCH.zip"
-RUN /bin/bash -c "unzip $DEPLOYMENT_BRANCH.zip"
-RUN /bin/bash -c "mv ooi-ui-services-$DEPLOYMENT_BRANCH ooi-ui-services"
+WORKDIR /root
+ADD git-deploy.sh /root/git-deploy.sh
+RUN /bin/bash -c "/root/git-deploy.sh"
 
 WORKDIR /root/ooi-ui-services
 ENV WORKON_HOME /root/.virtualenvs
