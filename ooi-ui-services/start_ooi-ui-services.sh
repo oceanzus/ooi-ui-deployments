@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check to make sure the input args have been passed in
-if [ -n "$DB_RESET" ] && [ -n "$DB_NAME" ] && [ -n "$DB_HOST" ] && [ -n "$DB_USER" ] && [ -n "$DB_PASS" ] && [ -n "$DB_PORT" ] && [ -n "$DB_SCHEMA" ] && [ -n "$HOST_IP" ] && [ -n "$DEFAULT_ADMIN_USERNAME" ] && [ -n "$DEFAULT_ADMIN_PASSWORD" ]; then
+if [ -n "$DB_RESET" ] && [ -n "$DB_NAME" ] && [ -n "$DB_HOST" ] && [ -n "$DB_USER" ] && [ -n "$DB_PASS" ] && [ -n "$DB_PORT" ] && [ -n "$DB_SCHEMA" ] && [ -n "$HOST_IP" ] && [ -n "$DEFAULT_ADMIN_USERNAME" ] && [ -n "$DEFAULT_ADMIN_PASSWORD" ] && [ -n "$DEPLOYMENT_SCENARIO" ]; then
   echo "All parameters supplied...continuing..."
 else
   echo "Missing a launch parameter?"
@@ -15,6 +15,7 @@ else
   echo "DB_SCHEMA=$DB_SCHEMA"
   echo "DEFAULT_ADMIN_USERNAME=$DEFAULT_ADMIN_USERNAME"
   echo "DEFAULT_ADMIN_PASSWORD=$DEFAULT_ADMIN_PASSWORD"
+  echo "DEPLOYMENT_SCENARIO=$DEPLOYMENT_SCENARIO"
   exit
 fi
 
@@ -28,8 +29,9 @@ workon ooiui
 export PYTHONPATH=$PYTHONPATH:.
 
 # Make the config files conform to the launch parameters
+sed -i -e "s/DEPLOYMENT_SCENARIO: LOCAL_DEVELOPMENT/DEPLOYMENT_SCENARIO: $DEPLOYMENT_SCENARIO/g" ooiservices/app/config.yml
 sed -i -e "s/HOST: localhost/HOST: $HOST_IP/g" ooiservices/app/config.yml
-sed -i -e "s/postgres@localhost\/$DB_NAME/$DB_USER:$DB_PASS@$DB_HOST\/$DB_NAME/g" ooiservices/app/config.yml
+sed -i -e "s/postgres:\/\/user:password@hostname\/database_name/$DB_USER:$DB_PASS@$DB_HOST\/$DB_NAME/g" ooiservices/app/config.yml
 
 # Reset the database
 if [ "$DB_RESET" == "True" ]; then

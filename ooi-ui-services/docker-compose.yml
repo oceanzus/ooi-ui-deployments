@@ -35,10 +35,11 @@ ooiuiservices:
     DB_USER: ooiui
     DB_PASS: ooiui
     DB_HOST: ooiuidb
-    DB_NAME: ooiuidev
+    DB_NAME: ooiui
     DB_RESET: true
     DB_SCHEMA: ooiui
     DEFAULT_ADMIN_USERNAME: admin
     DEFAULT_ADMIN_PASSWORD: password
+    DEPLOYMENT_SCENARIO: PRODUCTION
   links:
    - ooiuidb
