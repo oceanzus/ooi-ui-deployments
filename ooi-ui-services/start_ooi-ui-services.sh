@@ -31,7 +31,7 @@ export PYTHONPATH=$PYTHONPATH:.
 # Make the config files conform to the launch parameters
 sed -i -e "s/DEPLOYMENT_SCENARIO: LOCAL_DEVELOPMENT/DEPLOYMENT_SCENARIO: $DEPLOYMENT_SCENARIO/g" ooiservices/app/config.yml
 sed -i -e "s/HOST: localhost/HOST: $HOST_IP/g" ooiservices/app/config.yml
-sed -i -e "s/postgres:\/\/user:password@hostname\/database_name/$DB_USER:$DB_PASS@$DB_HOST\/$DB_NAME/g" ooiservices/app/config.yml
+sed -i -e "s/postgres:\/\/user:password@hostname\/database_name/postgresql:\/\/$DB_USER:$DB_PASS@$DB_HOST\/$DB_NAME/g" ooiservices/app/config.yml
 
 # Reset the database
 if [ "$DB_RESET" == "True" ]; then
