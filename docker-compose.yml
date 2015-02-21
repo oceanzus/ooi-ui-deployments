@@ -34,7 +34,7 @@ ooiuiservices:
     DEPLOYMENT_SCENARIO: PRODUCTION
     SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'
     UFRAME_URL: 'http://50.198.110.182:12570'
-    REDMINE_KEY: '8304b8012f83f8d3f155b479210884615167ceae'
+    REDMINE_KEY: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx'
     UI_API_KEY: a12261fd433d4d0a8a9c6b7666d984ec
     REDMINE_URL: 'https://uframe-cm.ooi.rutgers.edu'
     REDIS_URL: 'redis://:password@localhost:6379'
