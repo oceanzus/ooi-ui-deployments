@@ -32,6 +32,18 @@ export PYTHONPATH=$PYTHONPATH:.
 sed -i -e "s/DEPLOYMENT_SCENARIO: LOCAL_DEVELOPMENT/DEPLOYMENT_SCENARIO: $DEPLOYMENT_SCENARIO/g" ooiservices/app/config.yml
 sed -i -e "s/HOST: localhost/HOST: $HOST_IP/g" ooiservices/app/config.yml
 sed -i -e "s/postgres:\/\/user:password@hostname\/database_name/postgresql:\/\/$DB_USER:$DB_PASS@$DB_HOST\/$DB_NAME/g" ooiservices/app/config.yml
+# SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'
+sed -i -e "s/SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'/SECRET_KEY: '$SECRET_KEY'/g" ooiservices/app/config.yml
+# UFRAME_URL: 'http://localhost:12570'
+sed -i -e "s/UFRAME_URL: 'http://localhost:12570'/UFRAME_URL: '$UFRAME_URL'/g" ooiservices/app/config.yml
+# REDMINE_KEY: 'XXXXXXXXXXXXX'
+sed -i -e "s/REDMINE_KEY: 'XXXXXXXXXXXXX'/REDMINE_KEY: '$REDMINE_KEY'/g" ooiservices/app/config.yml
+# UI_API_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+sed -i -e "s/UI_API_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/UI_API_KEY: $UI_API_KEY/g" ooiservices/app/config.yml
+# REDMINE_URL: 'https://uframe-cm.ooi.rutgers.edu'
+sed -i -e "s/REDMINE_URL: 'https:\/\/uframe-cm.ooi.rutgers.edu'/REDMINE_URL: 'https:\/\/$REDMINE_URL'/g" ooiservices/app/config.yml
+# REDIS_URL: 'redis://:password@localhost:6379'
+sed -i -e "s/REDIS_URL: 'redis:\/\/:password@localhost:6379'/REDIS_URL: '$REDIS_URL'/g" ooiservices/app/config.yml
 
 # Reset the database
 if [ "$DB_RESET" == "True" ]; then
