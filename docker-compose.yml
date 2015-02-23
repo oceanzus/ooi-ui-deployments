@@ -1,3 +1,13 @@
+# redis server
+#redis:
+#  restart: always
+#  image: dockerfile/redis
+#  volumes: /root/redis-data:/data
+#  ports:
+#   - "6379:6379"
+#  expose:
+#   - "6379"
+
 #docker run -e USERNAME=ooiui -e PASS=ooiui -d --name ooiuidb -v $HOME/postgres_data:/var/lib/postgresql oceanzus/docker_postgis
 ooiuidb:
   restart: always
@@ -40,6 +50,7 @@ ooiuiservices:
     REDIS_URL: 'redis://:password@localhost:6379'
   links:
    - ooiuidb
+#   - redis
 
 #docker run -d --name ooiui1 --link ooiuiservices:ooiuiservices oceanzus/ooi-ui-deploy
 ooiui1:
@@ -77,4 +88,3 @@ ooiuihaproxy:
   links:
    - ooiui1
    - ooiui2
-
