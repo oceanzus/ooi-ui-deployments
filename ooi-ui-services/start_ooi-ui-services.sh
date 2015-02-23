@@ -44,6 +44,8 @@ sed -i -e "s|UI_API_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|UI_API_KEY: $UI_API_KE
 sed -i -e "s|REDMINE_URL: 'https://uframe-cm.ooi.rutgers.edu'|REDMINE_URL: '$REDMINE_URL'|g" ooiservices/app/config.yml
 # REDIS_URL: 'redis://:password@localhost:6379'
 sed -i -e "s|REDIS_URL: 'redis://:password@localhost:6379'|REDIS_URL: '$REDIS_URL'|g" ooiservices/app/config.yml
+# ENV_NAME: 'LOCAL_DEVELOPMENT'
+sed -i -e "s|ENV_NAME: 'LOCAL_DEVELOPMENT'|ENV_NAME: '$DEPLOYMENT_SCENARIO'|g" ooiservices/app/config.yml
 
 # Reset the database
 if [ "$DB_RESET" == "True" ]; then
