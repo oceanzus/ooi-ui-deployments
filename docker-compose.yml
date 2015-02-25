@@ -43,7 +43,7 @@ ooiuiservices:
     DEFAULT_ADMIN_PASSWORD: password
     DEPLOYMENT_SCENARIO: PRODUCTION
     SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'
-    UFRAME_URL: 'http://50.198.110.182:12570'
+    UFRAME_URL: 'http://uframe-test.ooi.rutgers.edu:12575'
     REDMINE_KEY: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx'
     UI_API_KEY: a12261fd433d4d0a8a9c6b7666d984ec
     REDMINE_URL: 'https://uframe-cm.ooi.rutgers.edu'
