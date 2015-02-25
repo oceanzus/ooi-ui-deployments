@@ -44,7 +44,9 @@ ooiuiservices:
     DEPLOYMENT_SCENARIO: PRODUCTION
     SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'
     UFRAME_URL: 'http://uframe-test.ooi.rutgers.edu:12575'
-    REDMINE_KEY: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    UFRAME_URL_BASE: '/sensor/inv'
+    REDMINE_KEY: 'XXXXXXXXXXXXX'
+    REDMINE_PROJECT_ID: 'ooi-ui-api-testing'
     UI_API_KEY: a12261fd433d4d0a8a9c6b7666d984ec
     REDMINE_URL: 'https://uframe-cm.ooi.rutgers.edu'
     REDIS_URL: 'redis://:password@localhost:6379'
