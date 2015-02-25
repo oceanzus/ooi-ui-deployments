@@ -10,6 +10,6 @@ sed -i -e "s|UI_API_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|UI_API_KEY: $UI_API_KE
 # SECRET_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 sed -i -e "s|SECRET_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|SECRET_KEY: $SECRET_KEY|g" ooiui/config/config.yml
 
-lip="$(/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')"
+lip="$(/sbin/ifconfig $HOST_NIC | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')"
 sed -i -e "s/localhost/$lip/g" app.py
 python app.py -s

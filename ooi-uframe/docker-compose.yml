@@ -1,0 +1,23 @@
+uframe:
+#  restart: always
+  image: oceanzus/uframe:v1
+  expose:
+   - "12570"
+   - "12571"
+   - "12572"
+   - "12573"
+   - "12574"
+   - "12575"
+  ports:
+   - "10.181.93.144:12570:12570"
+   - "10.181.93.144:12571:12571"
+   - "10.181.93.144:12572:12572"
+   - "10.181.93.144:12573:12573"
+   - "10.181.93.144:12574:12574"
+   - "10.181.93.144:12575:12575"
+#  environment:
+#    UFRAME_TARBALL: ooi-cass_cd08b5e.tar.gz
+#    UFRAME_INGEST: uframe_ingest.tar.gz
+  volumes:
+   - .:/home/uframe/source
+#  privileged: true

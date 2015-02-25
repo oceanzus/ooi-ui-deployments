@@ -61,6 +61,7 @@ ooiui1:
   environment:
     SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'
     UI_API_KEY: a12261fd433d4d0a8a9c6b7666d984ec
+    HOST_NIC: eth0
   links:
    - ooiuiservices
 
@@ -73,6 +74,7 @@ ooiui2:
   environment:
     SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'
     UI_API_KEY: a12261fd433d4d0a8a9c6b7666d984ec
+    HOST_NIC: eth0
   links:
    - ooiuiservices
 

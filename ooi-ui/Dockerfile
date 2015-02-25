@@ -34,6 +34,8 @@ RUN grunt
 ADD start_ooi-ui.sh /root/ooi-ui/start_ooi-ui.sh
 RUN chmod +x /root/ooi-ui/start_ooi-ui.sh
 
+ENV HOST_NIC eth0
+
 EXPOSE 5000
 
 CMD [ "/bin/bash", "-c", "/root/ooi-ui/start_ooi-ui.sh" ]
