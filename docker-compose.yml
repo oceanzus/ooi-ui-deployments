@@ -25,7 +25,7 @@ ooiuidb:
 #docker run -e HOST_IP=0.0.0.0 -e DB_PORT=5432 -e DB_USER=ooiui -e DB_PASS=ooiui -e DB_HOST=ooiuidb -e DB_NAME=ooiuidev -e DB_RESET=true -d --name ooiuiservices --link ooiuidb:ooiuidb oceanzus/ooi-ui-services-deploy
 ooiuiservices:
   restart: always
-  image: oceanzus/ooi-ui-services
+  image: oceanzus/ooi-ui-services:r3
   ports:
    - "4000:4000"
   expose:
@@ -55,7 +55,7 @@ ooiuiservices:
 #docker run -d --name ooiui1 --link ooiuiservices:ooiuiservices oceanzus/ooi-ui-deploy
 ooiui1:
   restart: always
-  image: oceanzus/ooi-ui
+  image: oceanzus/ooi-ui:r3
   expose:
    - "5000"
   environment:
@@ -68,7 +68,7 @@ ooiui1:
 #docker run -d --name ooiui2 --link ooiuiservices:ooiuiservices oceanzus/ooi-ui-deploy
 ooiui2:
   restart: always
-  image: oceanzus/ooi-ui
+  image: oceanzus/ooi-ui:r3
   expose:
    - "5000"
   environment:
