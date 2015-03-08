@@ -21,6 +21,19 @@ ooiuidb:
   expose:
    - "5432"
 
+muframe:
+  restart: always
+  image: oceanzus/muframe
+  volumes:
+   - $HOME/muframe_data:$HOME/muframe_data
+  environment:
+    USERNAME: ooiui
+    PASS: ooiui
+  ports:
+   - "7090:7090"
+  expose:
+   - "7090"
+
 #docker run -e HOST_IP=0.0.0.0 -e DB_PORT=5432 -e DB_USER=ooiui -e DB_PASS=ooiui -e DB_HOST=ooiuidb -e DB_NAME=ooiuidev -e DB_RESET=true -d --name ooiuiservices --link ooiuidb:ooiuidb oceanzus/ooi-ui-services-deploy
 ooiuiservices:
   restart: always
@@ -51,3 +64,4 @@ ooiuiservices:
     REDIS_URL: 'redis://:password@localhost:6379'
   links:
    - ooiuidb
+   - muframe

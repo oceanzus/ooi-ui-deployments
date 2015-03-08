@@ -1,21 +1,25 @@
 #!/bin/bash
-su - uframe
-mkdir /home/uframe/tmp
-cp /home/uframe/source/ooi-cass_cd08b5e.tar.gz /home/uframe/tmp/
-tar -xzvf /home/uframe/tmp/ooi-cass_cd08b5e.tar.gz -C /home/uframe
-mv /home/uframe/ooi /home/uframe/ooi-cas
+#su - uframe
+sudo mkdir /home/uframe/tmp
+sudo cp /home/uframe/source/ooi-cass_cd08b5e.tar.gz /home/uframe/tmp/
+sudo tar -xzvf /home/uframe/tmp/ooi-cass_cd08b5e.tar.gz -C /home/uframe
+sudo chown -R uframe:uframe /home/uframe/ooi
+sudo mv /home/uframe/ooi /home/uframe/ooi-cas
 source /home/uframe/ooi-cas/bin/edex-server
 
 cd /home/uframe/tmp
-cp /home/uframe/source/uframe_ingest.tar.gz /home/uframe/tmp/
-gunzip /home/uframe/tmp/uframe_ingest.tar.gz
-tar -xvf /home/uframe/tmp/uframe_ingest.tar
+sudo cp /home/uframe/source/uframe_ingest.tar.gz /home/uframe/tmp/
+sudo gunzip /home/uframe/tmp/uframe_ingest.tar.gz
+sudo tar -xvf /home/uframe/tmp/uframe_ingest.tar
 cd /home/uframe/tmp/uframe_ingest
-gunzip /home/uframe/tmp/uframe_ingest/ingest_config_spreadsheets.tar.gz
-tar -xvf /home/uframe/tmp/uframe_ingest/ingest_config_spreadsheets.tar
+sudo gunzip /home/uframe/tmp/uframe_ingest/ingest_config_spreadsheets.tar.gz
+sudo tar -xvf /home/uframe/tmp/uframe_ingest/ingest_config_spreadsheets.tar
 
 cd /home/uframe/
-echo "export PATH=$PATH:/home/uframe/ooi-cas/uframe-1.0/java/bin" >> /home/uframe/.bash_profile
+echo "export UFRAME1_HOME=/home/uframe/ooi-cas" >> /home/uframe/.bash_profile
+echo "export JAVA_HOME=${UFRAME1_HOME}/uframe-1.0/java" >> /home/uframe/.bash_profile
+echo "export PATH=${JAVA_HOME}/bin:${PATH}" >> /home/uframe/.bash_profile
+#echo "export PATH=$PATH:/home/uframe/ooi-cas/uframe-1.0/java/bin" >> /home/uframe/.bash_profile
 source /home/uframe/.bash_profile
 source /home/uframe/ooi-cas/bin/edex-server
 

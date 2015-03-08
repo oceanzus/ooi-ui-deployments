@@ -22,6 +22,24 @@ ooiuidb:
   expose:
    - "5432"
 
+# muFrame
+muframe:
+  restart: always
+  image: oceanzus/muframe
+  expose:
+   - "9070"
+  environment:
+    MUFRAME_DATA_ROOT: /root
+    MUFRAME_DATA_FOLDER: muframe_data
+    MUFRAME_UFRAME_URL: http://uframe-test.ooi.rutgers.edu:12575
+    MUFRAME_UFRAME_URL_ROOT: /sensor/inv
+    MUFRAME_UFRAME_TIMEOUT_CONNECT: 5
+    MUFRAME_UFRAME_TIMEOUT_READ: 30
+    MUFRAME_HOST: localhost
+    MUFRAME_PORT: 9070
+    MUFRAME_TIMEOUT: 60
+    MUFRAME_PRELOAD: False
+
 #docker run -e HOST_IP=0.0.0.0 -e DB_PORT=5432 -e DB_USER=ooiui -e DB_PASS=ooiui -e DB_HOST=ooiuidb -e DB_NAME=ooiuidev -e DB_RESET=true -d --name ooiuiservices --link ooiuidb:ooiuidb oceanzus/ooi-ui-services-deploy
 ooiuiservices:
   restart: always
@@ -37,13 +55,13 @@ ooiuiservices:
     DB_PASS: ooiui
     DB_HOST: ooiuidb
     DB_NAME: ooiui
-    DB_RESET: true
+    DB_RESET: false
     DB_SCHEMA: ooiui
     DEFAULT_ADMIN_USERNAME: admin
     DEFAULT_ADMIN_PASSWORD: password
     DEPLOYMENT_SCENARIO: PRODUCTION
     SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'
-    UFRAME_URL: 'http://uframe-test.ooi.rutgers.edu:12575'
+    UFRAME_URL: 'http://localhost:9070'
     UFRAME_URL_BASE: '/sensor/inv'
     REDMINE_KEY: 'XXXXXXXXXXXXX'
     REDMINE_PROJECT_ID: 'ooi-ui-api-testing'
@@ -52,6 +70,7 @@ ooiuiservices:
     REDIS_URL: 'redis://:password@localhost:6379'
   links:
    - ooiuidb
+   - muframe
 #   - redis
 
 #docker run -d --name ooiui1 --link ooiuiservices:ooiuiservices oceanzus/ooi-ui-deploy
