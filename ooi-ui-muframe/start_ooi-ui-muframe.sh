@@ -12,6 +12,6 @@ sed -i -e "s|uframe_timeout_read: 30|uframe_timeout_read: $MUFRAME_UFRAME_TIMEOU
 sed -i -e "s|host: 127.0.0.1|host: $MUFRAME_HOST|g" muframe.yml
 sed -i -e "s|port: 7090|port: $MUFRAME_PORT|g" muframe.yml
 sed -i -e "s|timeout: 60|timeout: $MUFRAME_TIMEOUT|g" muframe.yml
-sed -i -e "s|preload: False|preload: $MUFRAME_PRELOAD|g" muframe
+sed -i -e "s|preload: False|preload: $MUFRAME_PRELOAD|g" muframe.yml
 
 python muframe.py
