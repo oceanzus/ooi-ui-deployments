@@ -22,6 +22,6 @@ RUN /bin/bash -c "source /root/.venvburrito/startup.sh \
 ADD start_ooi-ui-muframe.sh /root/muframe/start_ooi-ui-muframe.sh
 RUN chmod +x /root/muframe/start_ooi-ui-muframe.sh
 
-EXPOSE 9070
+EXPOSE 7090
 
 CMD [ "/bin/bash", "-c", "/root/muframe/start_ooi-ui-muframe.sh" ]

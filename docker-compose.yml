@@ -1,4 +1,11 @@
-# redis server
+# OOI UI Main Docker Launch
+# <https://github.com/oceanzus/ooi-ui-deployments.git>
+# Author: RPS ASA
+# Usage: <https://github.com/asascience-open/ooi-ui/wiki/Automated-Deployment-(Docker)>
+
+# NOTE:  Do not change parameters unless # *** is above the parameter
+
+# Redis Container
 #redis:
 #  restart: always
 #  image: dockerfile/redis
@@ -8,11 +15,12 @@
 #  expose:
 #   - "6379"
 
-#docker run -e USERNAME=ooiui -e PASS=ooiui -d --name ooiuidb -v $HOME/postgres_data:/var/lib/postgresql oceanzus/docker_postgis
+# PostgreSQL/PostGIS Container
 ooiuidb:
   restart: always
   image: oceanzus/docker_postgis
   volumes:
+   # *** $HOME/postgres_data will be created automatically unless already exists
    - $HOME/postgres_data:/var/lib/postgresql
   environment:
     USERNAME: ooiui
@@ -22,12 +30,18 @@ ooiuidb:
   expose:
    - "5432"
 
-# muFrame
+# muFrame Container: uFrame response cache or pass-through
 muframe:
   restart: always
   image: oceanzus/muframe
+  volumes:
+  # *** Ensure the $HOME/muframe_data directory exists before launching
+  # *** /root/muframe_data is the Docker container path, do not change
+   - $HOME/muframe_data:/root/muframe_data
+  ports:
+   - "7090:7090"
   expose:
-   - "9070"
+   - "7090"
   environment:
     MUFRAME_DATA_ROOT: /root
     MUFRAME_DATA_FOLDER: muframe_data
@@ -35,12 +49,13 @@ muframe:
     MUFRAME_UFRAME_URL_ROOT: /sensor/inv
     MUFRAME_UFRAME_TIMEOUT_CONNECT: 5
     MUFRAME_UFRAME_TIMEOUT_READ: 30
-    MUFRAME_HOST: localhost
-    MUFRAME_PORT: 9070
+    MUFRAME_HOST: 0.0.0.0
+    MUFRAME_PORT: 7090
     MUFRAME_TIMEOUT: 60
+    # *** True = Build cached files, False = Do not contact uFrame, only use cached files
     MUFRAME_PRELOAD: False
 
-#docker run -e HOST_IP=0.0.0.0 -e DB_PORT=5432 -e DB_USER=ooiui -e DB_PASS=ooiui -e DB_HOST=ooiuidb -e DB_NAME=ooiuidev -e DB_RESET=true -d --name ooiuiservices --link ooiuidb:ooiuidb oceanzus/ooi-ui-services-deploy
+# OOI UI Services Container
 ooiuiservices:
   restart: always
   image: oceanzus/ooi-ui-services
@@ -55,51 +70,71 @@ ooiuiservices:
     DB_PASS: ooiui
     DB_HOST: ooiuidb
     DB_NAME: ooiui
+    # *** true = wipe entire database, false = use existing
     DB_RESET: false
     DB_SCHEMA: ooiui
+    # *** Change as necessary
     DEFAULT_ADMIN_USERNAME: admin
+    # *** Change as necessary
     DEFAULT_ADMIN_PASSWORD: password
     DEPLOYMENT_SCENARIO: PRODUCTION
+    # *** Change as necessary
     SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'
-    UFRAME_URL: 'http://localhost:9070'
+    # *** Use for uFrame direct (default)
+    UFRAME_URL: 'http://uframe-test.ooi.rutgers.edu:12575'
+    # *** Use for muFrame: cache-only
+    #UFRAME_URL: 'http://muframe:7090/service='
+    # *** Use for muFrame: no-cache
+    #UFRAME_URL: 'http://muframe:7090/uframe='
     UFRAME_URL_BASE: '/sensor/inv'
+    # *** Change as necessary
     REDMINE_KEY: 'XXXXXXXXXXXXX'
+    # *** Change as necessary
     REDMINE_PROJECT_ID: 'ooi-ui-api-testing'
+    # *** Change as necessary
     UI_API_KEY: a12261fd433d4d0a8a9c6b7666d984ec
+    # *** Change as necessary
     REDMINE_URL: 'https://uframe-cm.ooi.rutgers.edu'
+    # *** Change as necessary
     REDIS_URL: 'redis://:password@localhost:6379'
   links:
    - ooiuidb
-   - muframe
-#   - redis
+   # *** Enable muFrame
+   #- muframe
 
-#docker run -d --name ooiui1 --link ooiuiservices:ooiuiservices oceanzus/ooi-ui-deploy
+# OOI UI Container #1
 ooiui1:
   restart: always
   image: oceanzus/ooi-ui
   expose:
    - "5000"
   environment:
+    # *** Change as necessary
     SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'
+    # *** Change as necessary
     UI_API_KEY: a12261fd433d4d0a8a9c6b7666d984ec
+    # *** Change as necessary
     HOST_NIC: eth0
   links:
    - ooiuiservices
 
-#docker run -d --name ooiui2 --link ooiuiservices:ooiuiservices oceanzus/ooi-ui-deploy
+# OOI UI Container #2
 ooiui2:
   restart: always
   image: oceanzus/ooi-ui
   expose:
    - "5000"
   environment:
+    # *** Change as necessary
     SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'
+    # *** Change as necessary
     UI_API_KEY: a12261fd433d4d0a8a9c6b7666d984ec
+    # *** Change as necessary
     HOST_NIC: eth0
   links:
    - ooiuiservices
 
-#docker run -d --link ooiui1:ooiui1 --link ooiui2:ooiui2 --name ooiui-haproxy -e PORT=5000 -p 10.181.61.91:80:80 oceanzus/haproxy
+# HAProxy Load Balancing Container
 ooiuihaproxy:
   restart: always
   image: oceanzus/haproxy
@@ -107,6 +142,7 @@ ooiuihaproxy:
     PORT: 5000
     MAXCONN: 500
   ports:
+   # *** Change IP address to externally-facing domain IP address
    - "10.181.93.144:80:80"
   links:
    - ooiui1
