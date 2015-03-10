@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check to make sure the input args have been passed in
-if [ -n "$DB_RESET" ] && [ -n "$DB_NAME" ] && [ -n "$DB_HOST" ] && [ -n "$DB_USER" ] && [ -n "$DB_PASS" ] && [ -n "$DB_PORT" ] && [ -n "$DB_SCHEMA" ] && [ -n "$HOST_IP" ] && [ -n "$DEFAULT_ADMIN_USERNAME" ] && [ -n "$DEFAULT_ADMIN_PASSWORD" ] && [ -n "$DEPLOYMENT_SCENARIO" ]; then
+if [ -n "$DB_RESET" ] && [ -n "$DB_SAVE_USERS" ] && [ -n "$DB_NAME" ] && [ -n "$DB_HOST" ] && [ -n "$DB_USER" ] && [ -n "$DB_PASS" ] && [ -n "$DB_PORT" ] && [ -n "$DB_SCHEMA" ] && [ -n "$HOST_IP" ] && [ -n "$DEFAULT_ADMIN_USERNAME" ] && [ -n "$DEFAULT_ADMIN_PASSWORD" ] && [ -n "$DEPLOYMENT_SCENARIO" ]; then
   echo "All parameters supplied...continuing..."
 else
   echo "Missing a launch parameter?"
@@ -12,6 +12,7 @@ else
   echo "DB_USER=$DB_USER"
   echo "DB_PASS=$DB_PASS"
   echo "DB_RESET=$DB_RESET"
+  echo "DB_SAVE_USERS=$DB_SAVE_USERS"
   echo "DB_SCHEMA=$DB_SCHEMA"
   echo "DEFAULT_ADMIN_USERNAME=$DEFAULT_ADMIN_USERNAME"
   echo "DEFAULT_ADMIN_PASSWORD=$DEFAULT_ADMIN_PASSWORD"
@@ -36,6 +37,8 @@ sed -i -e "s|postgres://user:password@hostname/database_name|postgresql://$DB_US
 sed -i -e "s|SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'|SECRET_KEY: '$SECRET_KEY'|g" ooiservices/app/config.yml
 # UFRAME_URL: 'http://localhost:12575'
 sed -i -e "s|UFRAME_URL: 'http://localhost:12575'|UFRAME_URL: '$UFRAME_URL'|g" ooiservices/app/config.yml
+# UFRAME_ASSETS_URL: 'http://localhost:12573'
+sed -i -e "s|UFRAME_ASSETS_URL: 'http://localhost:12573'|UFRAME_URL: '$UFRAME_ASSETS_URL'|g" ooiservices/app/config.yml
 # UFRAME_URL_BASE: '/sensor/inv'
 sed -i -e "s|UFRAME_URL_BASE: '/sensor/inv'|UFRAME_URL_BASE: '$UFRAME_URL_BASE'|g" ooiservices/app/config.yml
 # REDMINE_KEY: 'XXXXXXXXXXXXX'
@@ -52,14 +55,22 @@ sed -i -e "s|REDIS_URL: 'redis://:password@localhost:6379'|REDIS_URL: '$REDIS_UR
 sed -i -e "s|ENV_NAME: 'LOCAL_DEVELOPMENT'|ENV_NAME: '$DEPLOYMENT_SCENARIO'|g" ooiservices/app/config.yml
 
 # Reset the database
-if [ "$DB_RESET" == "True" ]; then
-  echo "Dropping and recreating database $DB_NAME on host $DB_HOST..."
-  psql -h $DB_HOST -U $DB_USER -d postgres -c "DROP DATABASE $DB_NAME;"
-  psql -h $DB_HOST -U $DB_USER -d postgres -c "CREATE DATABASE $DB_NAME;"
-  psql -h $DB_HOST -U $DB_USER -d $DB_NAME -q -c "CREATE EXTENSION postgis;"
-  python ooiservices/manage.py rebuild_schema --schema $DB_SCHEMA --schema_owner $DB_USER
-  python ooiservices/manage.py load_data
-  python ooiservices/manage.py add_admin_user --username $DEFAULT_ADMIN_USERNAME --password $DEFAULT_ADMIN_PASSWORD --first_name Ad --last_name Min --email ad.min@somewhere.edu --org_name ASA
+if [ "$DB_INITIALIZE" == "True" ]; then
+    echo "Dropping and recreating database"
+    psql -h $DB_HOST -U $DB_USER -d postgres -c "DROP DATABASE $DB_NAME;"
+    psql -h $DB_HOST -U $DB_USER -d postgres -c "CREATE DATABASE $DB_NAME;"
+    psql -h $DB_HOST -U $DB_USER -d $DB_NAME -q -c "CREATE EXTENSION postgis;"
+    python ooiservices/manage.py rebuild_schema --schema $DB_SCHEMA --schema_owner $DB_USER --save_users False --admin_username $DEFAULT_ADMIN_USERNAME --admin_password $DEFAULT_ADMIN_PASSWORD --first_name $DB_FIRST_NAME --last_name $DB_LAST_NAME --email $DB_EMAIL --org_name $DB_ORG_NAME
+else
+    if [ "$DB_RESET" == "True" ]; then
+      echo "Backing up and recreating $DB_SCHEMA in database $DB_NAME on host $DB_HOST..."
+
+        if [ "$DB_SAVE_USERS" == "True" ]; then
+            python ooiservices/manage.py rebuild_schema --schema $DB_SCHEMA --schema_owner $DB_USER --save_users $DB_SAVE_USERS
+        else
+            python ooiservices/manage.py rebuild_schema --schema $DB_SCHEMA --schema_owner $DB_USER --save_users $DB_SAVE_USERS --admin_username $DEFAULT_ADMIN_USERNAME --admin_password $DEFAULT_ADMIN_PASSWORD --first_name $DB_FIRST_NAME --last_name $DB_LAST_NAME --email $DB_EMAIL --org_name $DB_ORG_NAME
+        fi
+    fi
 fi
 
 # Launch OOI UI Services

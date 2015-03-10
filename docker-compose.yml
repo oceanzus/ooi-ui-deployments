@@ -68,10 +68,23 @@ ooiuiservices:
     DB_PORT: 5432
     DB_USER: ooiui
     DB_PASS: ooiui
+    # *** Change as necessary
+    DB_FIRST_NAME: Default
+    # *** Change as necessary
+    DB_LAST_NAME: Admin
+    # *** Change as necessary
+    DB_EMAIL: defaultadmin@ooi.rutgers.edu
+    # *** Change as necessary
+    DB_ORG_NAME: Rutgers
     DB_HOST: ooiuidb
     DB_NAME: ooiui
+    # *** Drops and recreates the entire database
+    DB_INITIALIZE: false
     # *** true = wipe entire database, false = use existing
     DB_RESET: false
+    # *** If DB_RESET=true then setting this to True will save all existing users
+    #     while updating the rest of the database and preload data
+    DB_SAVE_USERS: True
     DB_SCHEMA: ooiui
     # *** Change as necessary
     DEFAULT_ADMIN_USERNAME: admin
@@ -86,6 +99,7 @@ ooiuiservices:
     #UFRAME_URL: 'http://muframe:7090/service='
     # *** Use for muFrame: no-cache
     #UFRAME_URL: 'http://muframe:7090/uframe='
+    UFRAME_ASSETS_URL: 'http://uframe-test.ooi.rutgers.edu:12573'
     UFRAME_URL_BASE: '/sensor/inv'
     # *** Change as necessary
     REDMINE_KEY: 'XXXXXXXXXXXXX'
