@@ -36,13 +36,13 @@ sed -i -e "s|postgres://user:password@hostname/database_name|postgresql://$DB_US
 # SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'
 sed -i -e "s|SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'|SECRET_KEY: '$SECRET_KEY'|g" ooiservices/app/config.yml
 # UFRAME_URL: 'http://localhost:12575'
-sed -i -e "s|UFRAME_URL: 'http://localhost:12570'|UFRAME_URL: '$UFRAME_URL'|g" ooiservices/app/config.yml
+sed -i -e "s|UFRAME_URL: 'http://localhost:12575'|UFRAME_URL: '$UFRAME_URL'|g" ooiservices/app/config.yml
 # UFRAME_ASSETS_URL: 'http://localhost:12573'
 sed -i -e "s|UFRAME_ASSETS_URL: 'http://localhost:12573'|UFRAME_ASSETS_URL: '$UFRAME_ASSETS_URL'|g" ooiservices/app/config.yml
 # UFRAME_URL_BASE: '/sensor/inv'
 sed -i -e "s|UFRAME_URL_BASE: '/sensor/inv'|UFRAME_URL_BASE: '$UFRAME_URL_BASE'|g" ooiservices/app/config.yml
 # REDMINE_KEY: 'XXXXXXXXXXXXX'
-sed -i -e "s|REDMINE_KEY: 'XXXXXXXXXXXXX'|REDMINE_KEY: '$REDMINE_KEY'|g" ooiservices/app/config.yml
+sed -i -e "s|REDMINE_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXX|REDMINE_KEY: '$REDMINE_KEY'|g" ooiservices/app/config.yml
 # REDMINE_PROJECT_ID: "ooi-ui-api-testing"
 sed -i -e "s|REDMINE_PROJECT_ID: 'ooi-ui-api-testing'|REDMINE_PROJECT_ID: '$REDMINE_PROJECT_ID'|g" ooiservices/app/config.yml
 # UI_API_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
