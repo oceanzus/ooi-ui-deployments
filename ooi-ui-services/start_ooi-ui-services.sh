@@ -41,6 +41,8 @@ sed -i -e "s|UFRAME_URL: 'http://localhost:12575'|UFRAME_URL: '$UFRAME_URL'|g" o
 sed -i -e "s|UFRAME_ASSETS_URL: 'http://localhost:12573'|UFRAME_ASSETS_URL: '$UFRAME_ASSETS_URL'|g" ooiservices/app/config.yml
 # UFRAME_URL_BASE: '/sensor/inv'
 sed -i -e "s|UFRAME_URL_BASE: '/sensor/inv'|UFRAME_URL_BASE: '$UFRAME_URL_BASE'|g" ooiservices/app/config.yml
+# UFRAME_DATA_REQUEST_LIMIT: 2880
+sed -i -e "s|UFRAME_DATA_REQUEST_LIMIT: 2880|UFRAME_DATA_REQUEST_LIMIT: '$UFRAME_DATA_REQUEST_LIMIT'|g" ooiservices/app/config.yml
 # REDMINE_KEY: 'XXXXXXXXXXXXX'
 sed -i -e "s|REDMINE_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXX|REDMINE_KEY: '$REDMINE_KEY'|g" ooiservices/app/config.yml
 # REDMINE_PROJECT_ID: "ooi-ui-api-testing"

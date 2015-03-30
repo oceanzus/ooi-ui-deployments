@@ -57,6 +57,7 @@ ooiuiservices:
     SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'
     UFRAME_URL: 'http://uframe-test.ooi.rutgers.edu:12575'
     UFRAME_URL_BASE: '/sensor/inv'
+    UFRAME_DATA_REQUEST_LIMIT: 2880
     REDMINE_KEY: 'XXXXXXXXXXXXX'
     REDMINE_PROJECT_ID: 'ooi-ui-api-testing'
     UI_API_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
