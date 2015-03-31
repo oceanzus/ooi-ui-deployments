@@ -101,6 +101,7 @@ ooiuiservices:
     #UFRAME_URL: 'http://muframe:7090/uframe='
     UFRAME_ASSETS_URL: 'http://uframe-test.ooi.rutgers.edu:12573'
     UFRAME_URL_BASE: '/sensor/inv'
+    UFRAME_DATA_REQUEST_LIMIT: 2880
     # *** Change as necessary
     REDMINE_KEY: 'XXXXXXXXXXXXX'
     # *** Change as necessary
