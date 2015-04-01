@@ -36,7 +36,7 @@ sed -i -e "s|postgres://user:password@hostname/database_name|postgresql://$DB_US
 # SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'
 sed -i -e "s|SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'|SECRET_KEY: '$SECRET_KEY'|g" ooiservices/app/config.yml
 # UFRAME_URL: 'http://localhost:12575'
-sed -i -e "s|UFRAME_URL: 'http://localhost:12575'|UFRAME_URL: '$UFRAME_URL'|g" ooiservices/app/config.yml
+sed -i -e "s|UFRAME_URL: 'http://localhost:12570'|UFRAME_URL: '$UFRAME_URL'|g" ooiservices/app/config.yml
 # UFRAME_ASSETS_URL: 'http://localhost:12573'
 sed -i -e "s|UFRAME_ASSETS_URL: 'http://localhost:12573'|UFRAME_ASSETS_URL: '$UFRAME_ASSETS_URL'|g" ooiservices/app/config.yml
 # UFRAME_URL_BASE: '/sensor/inv'
