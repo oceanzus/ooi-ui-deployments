@@ -58,11 +58,13 @@ ooiuiservices:
     UFRAME_URL: 'http://d3b.ooi.rutgers.edu:12575'
     UFRAME_URL_BASE: '/sensor/inv'
     UFRAME_DATA_REQUEST_LIMIT: 2880
-    REDMINE_KEY: 'XXXXXXXXXXXXX'
+    UFRAME_ASSETS_URL: 'http://d3b.ooi.rutgers.edu:12573'
+    REDMINE_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     REDMINE_PROJECT_ID: 'ooi-ui-api-testing'
-    UI_API_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    UI_API_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     REDMINE_URL: 'https://uframe-cm.ooi.rutgers.edu'
     REDIS_URL: 'redis://:password@localhost:6379'
+    USE_MOCK_DATA: False
   links:
    - ooiuidb
    - muframe

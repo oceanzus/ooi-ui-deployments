@@ -43,18 +43,20 @@ sed -i -e "s|UFRAME_ASSETS_URL: 'http://localhost:12573'|UFRAME_ASSETS_URL: '$UF
 sed -i -e "s|UFRAME_URL_BASE: '/sensor/inv'|UFRAME_URL_BASE: '$UFRAME_URL_BASE'|g" ooiservices/app/config.yml
 # UFRAME_DATA_REQUEST_LIMIT: 2880
 sed -i -e "s|UFRAME_DATA_REQUEST_LIMIT: 2880|UFRAME_DATA_REQUEST_LIMIT: '$UFRAME_DATA_REQUEST_LIMIT'|g" ooiservices/app/config.yml
-# REDMINE_KEY: 'XXXXXXXXXXXXX'
-sed -i -e "s|REDMINE_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXX|REDMINE_KEY: '$REDMINE_KEY'|g" ooiservices/app/config.yml
+# REDMINE_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+sed -i -e "s|REDMINE_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|REDMINE_KEY: '$REDMINE_KEY'|g" ooiservices/app/config.yml
 # REDMINE_PROJECT_ID: "ooi-ui-api-testing"
 sed -i -e "s|REDMINE_PROJECT_ID: 'ooi-ui-api-testing'|REDMINE_PROJECT_ID: '$REDMINE_PROJECT_ID'|g" ooiservices/app/config.yml
-# UI_API_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-sed -i -e "s|UI_API_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|UI_API_KEY: $UI_API_KEY|g" ooiservices/app/config.yml
+# UI_API_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+sed -i -e "s|UI_API_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|UI_API_KEY: $UI_API_KEY|g" ooiservices/app/config.yml
 # REDMINE_URL: 'https://uframe-cm.ooi.rutgers.edu'
 sed -i -e "s|REDMINE_URL: 'https://uframe-cm.ooi.rutgers.edu'|REDMINE_URL: '$REDMINE_URL'|g" ooiservices/app/config.yml
 # REDIS_URL: 'redis://:password@localhost:6379'
 sed -i -e "s|REDIS_URL: 'redis://:password@localhost:6379'|REDIS_URL: '$REDIS_URL'|g" ooiservices/app/config.yml
 # ENV_NAME: 'LOCAL_DEVELOPMENT'
 sed -i -e "s|ENV_NAME: 'LOCAL_DEVELOPMENT'|ENV_NAME: '$DEPLOYMENT_SCENARIO'|g" ooiservices/app/config.yml
+# USE_MOCK_DATA: False
+sed -i -e "s|USE_MOCK_DATA: False|USE_MOCK_DATA: '$USE_MOCK_DATA'|g" ooiservices/app/config.yml
 
 # Reset the database
 if [ "$DB_INITIALIZE" == "True" ]; then
