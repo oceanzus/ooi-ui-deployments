@@ -79,10 +79,10 @@ ooiuiservices:
     DB_HOST: ooiuidb
     DB_NAME: ooiui
     # *** Drops and recreates the entire database
-    DB_INITIALIZE: false
-    # *** true = wipe entire database, false = use existing
-    DB_RESET: false
-    # *** If DB_RESET=true then setting this to True will save all existing users
+    DB_INITIALIZE: False
+    # *** True = wipe entire database, False = use existing
+    DB_RESET: False
+    # *** If DB_RESET=True then setting this to True will save all existing users
     #     while updating the rest of the database and preload data
     DB_SAVE_USERS: True
     DB_SCHEMA: ooiui
@@ -94,12 +94,12 @@ ooiuiservices:
     # *** Change as necessary
     SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'
     # *** Use for uFrame direct (default)
-    UFRAME_URL: 'http://d3b.ooi.rutgers.edu:12575'
+    UFRAME_URL: 'http://uframe.ooi.rutgers.edu:12575'
     # *** Use for muFrame: cache-only
     #UFRAME_URL: 'http://muframe:7090/service='
     # *** Use for muFrame: no-cache
     #UFRAME_URL: 'http://muframe:7090/uframe='
-    UFRAME_ASSETS_URL: 'http://d3b.ooi.rutgers.edu:12573'
+    UFRAME_ASSETS_URL: 'http://uframe.ooi.rutgers.edu:12573'
     UFRAME_URL_BASE: '/sensor/inv'
     UFRAME_DATA_REQUEST_LIMIT: 2880
     # *** Change as necessary
