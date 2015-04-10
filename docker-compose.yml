@@ -31,34 +31,34 @@ ooiuidb:
    - "5432"
 
 # muFrame Container: uFrame response cache or pass-through
-muframe:
-  restart: always
-  image: oceanzus/muframe
-  volumes:
-  # *** Ensure the $HOME/muframe_data directory exists before launching
-  # *** /root/muframe_data is the Docker container path, do not change
-   - $HOME/muframe_data:/root/muframe_data
-  ports:
-   - "7090:7090"
-  expose:
-   - "7090"
-  environment:
-    MUFRAME_DATA_ROOT: /root
-    MUFRAME_DATA_FOLDER: muframe_data
-    MUFRAME_UFRAME_URL: http://uframe-test.ooi.rutgers.edu:12575
-    MUFRAME_UFRAME_URL_ROOT: /sensor/inv
-    MUFRAME_UFRAME_TIMEOUT_CONNECT: 5
-    MUFRAME_UFRAME_TIMEOUT_READ: 30
-    MUFRAME_HOST: 0.0.0.0
-    MUFRAME_PORT: 7090
-    MUFRAME_TIMEOUT: 60
-    # *** True = Build cached files, False = Do not contact uFrame, only use cached files
-    MUFRAME_PRELOAD: False
+#muframe:
+#  restart: always
+#  image: oceanzus/muframe
+#  volumes:
+#  # *** Ensure the $HOME/muframe_data directory exists before launching
+#  # *** /root/muframe_data is the Docker container path, do not change
+#   - $HOME/muframe_data:/root/muframe_data
+#  ports:
+#   - "7090:7090"
+#  expose:
+#   - "7090"
+#  environment:
+#    MUFRAME_DATA_ROOT: /root
+#    MUFRAME_DATA_FOLDER: muframe_data
+#    MUFRAME_UFRAME_URL: http://uframe-test.ooi.rutgers.edu:12575
+#    MUFRAME_UFRAME_URL_ROOT: /sensor/inv
+#    MUFRAME_UFRAME_TIMEOUT_CONNECT: 5
+#    MUFRAME_UFRAME_TIMEOUT_READ: 30
+#    MUFRAME_HOST: 0.0.0.0
+#    MUFRAME_PORT: 7090
+#    MUFRAME_TIMEOUT: 60
+#    # *** True = Build cached files, False = Do not contact uFrame, only use cached files
+#    MUFRAME_PRELOAD: False
 
 # OOI UI Services Container
 ooiuiservices:
   restart: always
-  image: oceanzus/ooi-ui-services:release4
+  image: oceanzus/ooi-ui-services:release4.1
   ports:
    - "4000:4000"
   expose:
@@ -122,7 +122,7 @@ ooiuiservices:
 # OOI UI Container #1
 ooiui1:
   restart: always
-  image: oceanzus/ooi-ui:release4
+  image: oceanzus/ooi-ui:release4.1
   expose:
    - "5000"
   environment:
@@ -138,7 +138,7 @@ ooiui1:
 # OOI UI Container #2
 ooiui2:
   restart: always
-  image: oceanzus/ooi-ui:release4
+  image: oceanzus/ooi-ui:release4.1
   expose:
    - "5000"
   environment:
