@@ -2,7 +2,7 @@
 # Sets the Git repo to deploy
 export DEPLOYMENT_REPO=https://github.com/asascience-open/ooi-ui-services
 # Sets the branch to deploy
-export DEPLOYMENT_BRANCH=master
+export DEPLOYMENT_BRANCH=4.3
 
 # --DO NOT MODIFY--
 cd /root

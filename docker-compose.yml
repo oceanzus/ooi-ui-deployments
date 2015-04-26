@@ -58,7 +58,7 @@ muframe:
 # OOI UI Services Container
 ooiuiservices:
   restart: always
-  image: oceanzus/ooi-ui-services
+  image: oceanzus/ooi-ui-services:release4.3
   ports:
    - "4000:4000"
   expose:
@@ -122,7 +122,7 @@ ooiuiservices:
 # OOI UI Container #1
 ooiui1:
   restart: always
-  image: oceanzus/ooi-ui
+  image: oceanzus/ooi-ui:release4.3
   expose:
    - "5000"
   environment:
@@ -138,7 +138,7 @@ ooiui1:
 # OOI UI Container #2
 ooiui2:
   restart: always
-  image: oceanzus/ooi-ui
+  image: oceanzus/ooi-ui:release4.3
   expose:
    - "5000"
   environment:
