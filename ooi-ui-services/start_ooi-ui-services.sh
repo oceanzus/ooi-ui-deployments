@@ -43,7 +43,7 @@ sed -i -e "s|OOI_SLOW_DB_QUERY_TIME: 0.5|OOI_SLOW_DB_QUERY_TIME: $OOI_SLOW_DB_QU
 sed -i -e "s|HOST: localhost|HOST: $HOST|g" ooiservices/app/config.yml
 sed -i -e "s|PORT: 4000|PORT: $PORT|g" ooiservices/app/config.yml
 sed -i -e "s|JSONIFY_PRETTYPRINT_REGULAR: true|JSONIFY_PRETTYPRINT_REGULAR: $JSONIFY_PRETTYPRINT_REGULAR|g" ooiservices/app/config.yml
-sed -i -e "s|UFRAME_URL: 'http://localhost:12576'|UFRAME_URL: '$UFRAME_URL'|g" ooiservices/app/config.yml
+sed -i -e "s|UFRAME_URL: 'http://localhost:12575'|UFRAME_URL: '$UFRAME_URL'|g" ooiservices/app/config.yml
 sed -i -e "s|UFRAME_ASSETS_URL: 'http://localhost:12573'|UFRAME_ASSETS_URL: '$UFRAME_ASSETS_URL'|g" ooiservices/app/config.yml
 sed -i -e "s|UFRAME_URL_BASE: '/sensor/inv'|UFRAME_URL_BASE: '$UFRAME_URL_BASE'|g" ooiservices/app/config.yml
 sed -i -e "s|UFRAME_TOC: '/sensor/inv/toc'|UFRAME_TOC: $UFRAME_TOC|g" ooiservices/app/config.yml
