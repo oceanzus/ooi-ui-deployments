@@ -33,7 +33,7 @@ export PYTHONPATH=$PYTHONPATH:.
 sed -i -e "s|ENV_NAME: 'LOCAL_DEVELOPMENT'|ENV_NAME: '$DEPLOYMENT_SCENARIO'|g" ooiservices/app/config.yml
 
 sed -i -e "s|LOGGING: True|LOGGING: $LOGGING|g" ooiservices/app/config.yml
-sed -i -e "s|LOG_FILE_PTAH: '/logs/'|LOG_FILE_PTAH: $LOG_FILE_PATH|g" ooiservices/app/config.yml
+sed -i -e "s|LOG_FILE_PTAH: '/logs/'|LOG_FILE_PTAH: $LOG_FILE_PTAH|g" ooiservices/app/config.yml
 sed -i -e "s|LOG_FILE: 'ooiservices.log'|LOG_FILE: $LOG_FILE|g" ooiservices/app/config.yml
 sed -i -e "s|SECRET_KEY: 'ccdf5de08ac74855bda3e7e309d871e5'|SECRET_KEY: '$SECRET_KEY'|g" ooiservices/app/config.yml
 sed -i -e "s|SSL_DISABLE: False|SSL_DISABLE: $SSL_DISABLE|g" ooiservices/app/config.yml
