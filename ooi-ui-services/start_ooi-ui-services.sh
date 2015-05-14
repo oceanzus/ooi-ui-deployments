@@ -47,7 +47,7 @@ sed -i -e "s|UFRAME_URL: 'http://localhost:12575'|UFRAME_URL: '$UFRAME_URL'|g" o
 sed -i -e "s|UFRAME_ASSETS_URL: 'http://localhost:12573'|UFRAME_ASSETS_URL: '$UFRAME_ASSETS_URL'|g" ooiservices/app/config.yml
 sed -i -e "s|UFRAME_URL_BASE: '/sensor/inv'|UFRAME_URL_BASE: '$UFRAME_URL_BASE'|g" ooiservices/app/config.yml
 sed -i -e "s|UFRAME_TOC: '/sensor/inv/toc'|UFRAME_TOC: $UFRAME_TOC|g" ooiservices/app/config.yml
-sed -i -e "s|UFRAME_INST_URL: 'http://uframe.ooi.rutgers.edu:12572'|UFRAME_INST_URL: $UFRAME_INST_URL|g" ooiservices/app/config.yml
+sed -i -e "s|UFRAME_INST_URL: 'http://localhost:12572'|UFRAME_INST_URL: $UFRAME_INST_URL|g" ooiservices/app/config.yml
 sed -i -e "s|UFRAME_INST_BASE: '/instrument/api'|UFRAME_INST_BASE: $UFRAME_INST_BASE|g" ooiservices/app/config.yml
 sed -i -e "s|UFRAME_PLAT_BASE: '/platform/api'|UFRAME_PLAT_BASE: $UFRAME_PLAT_BASE|g" ooiservices/app/config.yml
 sed -i -e "s|UFRAME_TIMEOUT_CONNECT: 5|UFRAME_TIMEOUT_CONNECT: $UFRAME_TIMEOUT_CONNECT|g" ooiservices/app/config.yml
