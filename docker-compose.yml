@@ -103,7 +103,7 @@ ooiuiservices:
     UFRAME_INST_BASE: '/instrument/api'
     UFRAME_PLAT_BASE: '/platform/api'
     UFRAME_TIMEOUT_CONNECT: 5
-    UFRAME_TIMEOUT_READ: 300
+    UFRAME_TIMEOUT_READ: 360000
     REDMINE_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     UI_API_KEY: a12261fd433d4d0a8a9c6b7666d984ec
     REDMINE_URL: 'https://uframe-cm.ooi.rutgers.edu'
@@ -111,8 +111,9 @@ ooiuiservices:
     WHOOSH_BASE: 'ooiservices/whoosh_index'
     REDIS_URL: 'redis://:password@localhost:6379'
     DEPLOYMENT_SCENARIO: PRODUCTION
-    UFRAME_DATA_REQUEST_LIMIT: 2880 # minutes
+    UFRAME_DATA_REQUEST_LIMIT: 360000 # minutes
     USE_MOCK_DATA: False # *** Set to True if running a demo
+    GOOGLE_ANALYTICS_URL: 'https://www.google-analytics.com/collect?v=1&tid=UA-50606390-3&cid=1&t=event'
 
   links:
    - ooiuidb

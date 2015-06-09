@@ -61,6 +61,7 @@ sed -i -e "s|REDIS_URL: 'redis://:password@localhost:6379'|REDIS_URL: '$REDIS_UR
 sed -i -e "s|DEPLOYMENT_SCENARIO: LOCAL_DEVELOPMENT|DEPLOYMENT_SCENARIO: $DEPLOYMENT_SCENARIO|g" ooiservices/app/config.yml
 sed -i -e "s|UFRAME_DATA_REQUEST_LIMIT: 2880|UFRAME_DATA_REQUEST_LIMIT: '$UFRAME_DATA_REQUEST_LIMIT'|g" ooiservices/app/config.yml
 sed -i -e "s|USE_MOCK_DATA: False|USE_MOCK_DATA: '$USE_MOCK_DATA'|g" ooiservices/app/config.yml
+sed -i -e "s|GOOGLE_ANALYTICS_URL: 'https://www.google-analytics.com/collect?v=1&tid=UA-50606390-3&cid=1&t=event'|GOOGLE_ANALYTICS_URL: '$GOOGLE_ANALYTICS_URL'|g" ooiservices/app/config.yml
 
 sed -i -e "s|postgres://user:password@hostname/database_name|postgresql://$DB_USER:$DB_PASS@$DB_HOST/$DB_NAME|g" ooiservices/app/config.yml
 
